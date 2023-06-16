@@ -1,0 +1,2 @@
+module VehicleBookingsHelper
+end

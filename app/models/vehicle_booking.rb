@@ -1,0 +1,2 @@
+class VehicleBooking < ApplicationRecord
+end
