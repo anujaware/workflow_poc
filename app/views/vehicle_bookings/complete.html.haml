@@ -8,14 +8,14 @@
       .card-header
         %h4 Booking #{@booking_request.status.titleize}
       .card-body
-        - if @booking_request.status == 'confirmed'
+        - if false and @booking_request.status == 'confirmed'
           %b.text-success.demo-label
             Congratulations! You booking has been confirmed.
             Enjoy your ride!
-        - elsif
+        - elsif false and @booking_request.status == 'cancelled'
           .text-danger Booking has been cancelled.
         - else 
-          Reload
+          = button_to 'Reload', '', class: 'btn btn-primary'
 -#%hr
 %br
 %br

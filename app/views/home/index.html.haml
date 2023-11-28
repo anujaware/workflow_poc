@@ -35,7 +35,7 @@
               .col
                 %label.demo-label VEHICLE CATEGORY
               .col
-                = f.select :currency, [['Business', 'business'], ['Economy', 'economy']], {class: "demo-input"},
+                = f.select :vehicle_category, [['Business', 'business'], ['Economy', 'economy']], {class: "demo-input"},
                   {class: "demo-input", required: true}
               -#.col
                 %b= label(:search, :bpmn_process_id, 'BPMN Process:', {class: "form-label"})
@@ -47,10 +47,10 @@
 
               
               %br.position-relative.demo-lebel
-                = f.submit 'SUBMIT', class: "demo-label ant-btn css-dev-only-do-not-override-b5ovp3 ant-btn-primary"
                 <button type="button" class="demo-label ant-btn css-dev-only-do-not-override-b5ovp3 ant-btn-default ant-btn-dangerous">
                 <span>CANCEL</span>
                 </button>
+                = f.submit 'SUBMIT', class: "demo-label ant-btn css-dev-only-do-not-override-b5ovp3 ant-btn-primary"
             .col-2
 -#  .col
     .card 
