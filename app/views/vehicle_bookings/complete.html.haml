@@ -15,7 +15,7 @@
         - elsif @booking_request.status == 'cancelled'
           .text-danger Booking has been cancelled.
         - else 
-          = button_to 'Reload', '', class: 'btn btn-primary'
+          = link_to 'Reload', '#', class: 'btn btn-primary'
 -#%hr
 %br
 %br
