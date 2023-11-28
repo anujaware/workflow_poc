@@ -28,6 +28,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_10_083437) do
     t.string "destination"
     t.string "process_instance_key"
     t.string "bpmn_process_id"
+    t.datetime "schedule"
+    t.string "vehicle_category"
   end
 
   create_table "workflows", force: :cascade do |t|

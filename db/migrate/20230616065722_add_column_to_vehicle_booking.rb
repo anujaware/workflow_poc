@@ -5,5 +5,7 @@ class AddColumnToVehicleBooking < ActiveRecord::Migration[7.0]
     add_column :vehicle_bookings, :destination, :string
     add_column :vehicle_bookings, :process_instance_key, :string
     add_column :vehicle_bookings, :bpmn_process_id, :string
+    add_column :vehicle_bookings, :schedule, :datetime
+    add_column :vehicle_bookings, :vehicle_category, :string
   end
 end

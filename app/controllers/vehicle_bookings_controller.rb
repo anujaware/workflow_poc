@@ -80,7 +80,6 @@ class VehicleBookingsController < ApplicationController
   end
 
   def index
-    render layout: false
     page_no = params[:page_no]
     @booking_requests = VehicleBooking.page(page_no)
   end

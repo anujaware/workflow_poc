@@ -1,12 +1,29 @@
+%br
+%br
+%br
+%br
 .row
+  .col-3
+  .col-4
+    .card
+      .card-body
+        %b.demo-label Booking Details
+        %br
+        %br
+        .demo-label PHONE NUMBER: #{@booking_request.phone_number}
+        .demo-label PICKUP: #{@booking_request.pickup_point.titleize}
+        .demo-label DESTINATION: #{@booking_request.destination.titleize}
+        .demo-label DISTANCE: #{@booking_request.distance}km.
+        .demo-label COST: #{@booking_request.cost}
+-#.row
   .col-3
   .col-6
     .card
-      .card-header
+      -#.card-header
         %h4 Booking Details
       .card-body
-        .row
-          .col-12
+        %div
+          .col-12.demo-label
             .row 
               .col-4 Phone Number:
               .col <b>#{@booking_request.phone_number}</b>
@@ -22,7 +39,7 @@
             .row 
               .col-4 Cost:
               .col <b>Rs. #{@booking_request.cost}</b>
-      .card-body
+      -#.card-body
         %b Other Details 
         %br
         %hr
@@ -38,7 +55,7 @@
 
 
 %br
-.row
+-#.row
   .col-5
   .col-1
     = form_tag '/workflows/broadcast' do
@@ -53,8 +70,8 @@
       = hidden_field_tag :correlation_key, "#{@booking_request.request_id}"
       = submit_tag 'Cancel', class: 'btn btn-danger'
 
-%hr
-.card 
+-#%hr
+-#.card 
   .card-header 
     %h4 What Happens Here?
   .card-body
@@ -63,7 +80,7 @@
     .row 
       .col-2 
       .col= image_tag "business_api_call", width: '80%'    
-.card 
+-#.card 
   .card-header 
     %h4 What Happens Next?
   .card-body
