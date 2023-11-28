@@ -1,0 +1,62 @@
+.row
+  .col-6
+    .card
+      .card-header
+        %h4 Book A Ride!
+      .card-body
+        = form_for VehicleBooking.new, url: 'vehicle_bookings' do |f|
+          .row
+            .col-2
+            .col
+              .col
+                %b= label(:phone_number, 'Phone Number:', {class: "form-label"})
+              .col
+                = f.text_field :phone_number, {class: "form-control", required: true}
+              %br.col
+                %b= label(:search, :pickup_point, 'Pickup Point:', {class: "form-label"})
+              .col
+                = f.select :pickup_point, [['Baner', 'baner'], ['Balewadi', 'balewadi']], {},
+                  {class: "form-select", required: true}
+              %br.col
+                %b= label(:search, :destination, 'Destination:', {class: "form-label"}) 
+              .col
+                = f.select :destination, [['Shivaji Nagar', 'shivaji_nagar'], ['Pune University', 'pune_university']], {},
+                  {class: "form-select", required: true}
+              -#%br.col
+                %b= label(:search, :bpmn_process_id, 'BPMN Process:', {class: "form-label"})
+              -#.col
+                = f.select :bpmn_process_id, [['Vehicle Booking Receive Task', 'vehicle-booking-receive-task'],
+                ['Vehicle Booking User Task', 'vehicle-booking-user-task'],
+                ['Vehicle Booking Separate', 'vehicle-booking-initiate']],
+                {}, {class: "form-select", required: true}
+
+              %br
+              .position-relative.col-8
+                = f.submit 'Submit', class: "btn btn-info", style: "float:right;"
+            .col-2
+-#  .col
+    .card 
+      .card-header
+        %h4 What Happens Next?
+      .card-body
+        %h6
+          %b On Submit
+        .row
+          %ul
+            %li It calls workflow's create API with required data
+            %li
+              <b>create</b> - sends <b>create_process_instance</b> (gRPC) request to workflow engine
+            %li
+              It has "Service Task" which:
+              %ul
+                %li Calculates Distance and Cost
+                %li Makes entry into the database
+        👇 Refer sequence diagram below 
+%br
+-#.row
+  .col
+    .card
+      .card-header
+        %h4 Sequence Diagram
+      .card-body
+        = image_tag "vehicle_booking_initiate", width: '100%'      

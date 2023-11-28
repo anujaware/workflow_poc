@@ -1,0 +1,28 @@
+.row
+  .col-3
+  .col-7
+    .card
+      .card-header
+        %h4 Booking #{@booking_request.status.titleize}
+      .card-body
+        - if @booking_request.status == 'confirmed'
+          %b.text-success
+            Congratulations! You booking has been confirmed.
+            Enjoy your ride!
+        - else 
+          .text-danger Booking has been cancelled.
+%br
+%br
+%br
+%hr
+%br
+%br
+.card 
+  .card-header 
+    %h4 What Happens Here?
+  .card-body
+    %ul
+      %li Buisness API call to fetch data and display
+    .row 
+      .col-2 
+      .col= image_tag "business_api_call", width: '80%'

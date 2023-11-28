@@ -6,6 +6,50 @@
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = stylesheet_link_tag "application", "data-turbo-track" => "reload"
+    = javascript_include_tag "application", type: "module"
+  -#%body
+    .navbar-expand-lg
+      .row
+        .col-2.mega-dropdown
+          %nav.nav.flex-column
+            %a.nav-link.mega-dropdown-two{style:"color:#fff;", href: '/'} Home
+            %a.nav-link.mega-dropdown-one{style:"color:#fff;", href: '/vehicle_bookings'} Vehicle Bookings
+            %a.nav-link.mega-dropdown-one{style:"color:#fff;", href: '/workflows'} Workflows
+        .col-10
+          .container= yield
   %body
-    = yield
+    .dashboard
+      -#.dashboard-nav
+        %header
+          %a.menu-toggle{:href => "#!"}
+            %i.fas.fa-bars
+          %a.brand-logo{:href => "#"}
+            %i.fas.fa-anchor
+            %span Book A Ride!
+        .nav-item-divider
+        %nav.dashboard-nav-list
+          %a.dashboard-nav-item{:href => "/"}
+            %i.fas.fa-sign-out-alt
+            Book a Ride ->
+          %a.dashboard-nav-item{:href => "/vehicle_bookings"}
+            %i.fas.fa-sign-out-alt
+            Past Bookings
+          %a.dashboard-nav-item{:href => "/workflows"}
+            %i.fas.fa-sign-out-alt
+            Workflows
+          -#.dashboard-nav-dropdown
+            %a.dashboard-nav-item.dashboard-nav-dropdown-toggle{:href => "#!"}
+              %i.fas.fa-users
+              Vehicle Bookings
+            .dashboard-nav-dropdown-menu
+              %a.dashboard-nav-dropdown-item{:href => "/vehicle_bookings"} List
+              %a.dashboard-nav-dropdown-item{:href => "/"} Create New
+          .nav-item-divider
+          -#%a.dashboard-nav-item{:href => "#"}
+            %i.fas.fa-sign-out-alt
+            Logout
+      .dashboard-app
+        .dashboard-content
+          .container
+            %p=yield

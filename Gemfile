@@ -8,6 +8,11 @@ gem "rails", "~> 7.0.4"
 
 gem "haml-rails", "~> 2.0"
 gem 'html2haml'
+gem 'zeebe-client'
+gem 'byebug'
+gem 'kaminari'
+gem 'carrierwave'
+gem 'bootstrap-sass'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -73,3 +78,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "cssbundling-rails", "~> 1.2"
+
+gem "jsbundling-rails", "~> 1.1"

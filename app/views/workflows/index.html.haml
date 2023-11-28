@@ -1,0 +1,28 @@
+.row
+  .col-7
+    %h1 Listing workflows
+  .col-5
+    = link_to new_workflow_path, class: 'float-right' do
+      %i.bi.bi-plus-circle.btn.btn-primary
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Process
+      %th
+      %th Action
+
+  %tbody
+    - @workflows.each do |workflow|
+      %tr
+        %td= workflow.name
+        %td= workflow.process_id
+        %td
+        %td
+          = link_to workflow do
+            %i.bi.bi-eye.btn.btn-primary
+          = link_to edit_workflow_path(workflow) do
+            %i.bi.bi-pencil-square.btn.btn-primary
+          = link_to workflow, method: :delete, data: { confirm: 'Are you sure?' } do
+            %i.bi.bi-trash.btn.btn-danger

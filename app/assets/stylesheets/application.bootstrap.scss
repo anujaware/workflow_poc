@@ -1,0 +1,15 @@
+//@import 'bootstrap/scss/bootstrap';
+//@import 'bootstrap-icons/font/bootstrap-icons';
+
+@import 'global.scss';
+@import 'demo.scss';
+
+.demo-label {
+  font-size: 14px;
+  font-variant: 'tabular-nums';
+}
+
+.demo-input {
+  width: 200px;
+  height: 30px;
+}

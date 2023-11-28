@@ -1,0 +1,66 @@
+.row
+  .col-6
+    .card
+      -#.card-header
+        %h4 Book A Ride!
+      .card-body
+        = form_for VehicleBooking.new, url: 'vehicle_bookings' do |f|
+          .row
+            .col-2
+            .col
+              .col
+                %label.demo-label{style: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji"} PHONE NUMBER
+              .col
+                = f.text_field :phone_number, {required: true, class: 'demo-input',
+                  style: 'font-size: 14px;height:30px;width: 230px;font-variant: tabular-nums;border: 1px solid #d9d9d9;'}
+              %br.col
+                %label PICK UP
+              .col
+                = f.text_field :pickup_point, {class: 'demo-input'}
+              %br.col
+                %label DESTINATION
+              .col
+                = f.text_field :destination, {class: 'demo-input'}
+              %br.col
+                %label VEHICLE CATEGORY
+              .col
+                = f.select :currency, [['Business', 'business'], ['Economy', 'economy']], {class: "demo-input"},
+                  {class: "demo-input", required: true}
+              -#%br.col
+                %b= label(:search, :bpmn_process_id, 'BPMN Process:', {class: "form-label"})
+              -#.col
+                = f.select :bpmn_process_id, [['Vehicle Booking Receive Task', 'vehicle-booking-receive-task'],
+                ['Vehicle Booking User Task', 'vehicle-booking-user-task'],
+                ['Vehicle Booking Separate', 'vehicle-booking-initiate']],
+                {}, {class: "form-select", required: true}
+
+              %br
+              .position-relative.col-8
+                = f.submit 'Submit', class: "btn btn-info", style: "float:right;"
+            .col-2
+-#  .col
+    .card 
+      .card-header
+        %h4 What Happens Next?
+      .card-body
+        %h6
+          %b On Submit
+        .row
+          %ul
+            %li It calls workflow's create API with required data
+            %li
+              <b>create</b> - sends <b>create_process_instance</b> (gRPC) request to workflow engine
+            %li
+              It has "Service Task" which:
+              %ul
+                %li Calculates Distance and Cost
+                %li Makes entry into the database
+        👇 Refer sequence diagram below 
+%br
+-#.row
+  .col
+    .card
+      .card-header
+        %h4 Sequence Diagram
+      .card-body
+        = image_tag "vehicle_booking_initiate", width: '100%'      

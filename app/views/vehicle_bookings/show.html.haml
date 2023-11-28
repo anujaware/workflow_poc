@@ -1,0 +1,77 @@
+.row
+  .col-3
+  .col-6
+    .card
+      .card-header
+        %h4 Booking Details
+      .card-body
+        .row
+          .col-12
+            .row 
+              .col-4 Phone Number:
+              .col <b>#{@booking_request.phone_number}</b>
+            .row 
+              .col-4 Time:
+              .col <b>#{@booking_request.created_at.strftime('%d-%m-%Y, %l:%M %p')}</b>
+            .row 
+              .col-4  From -> Where: 
+              .col <b>#{@booking_request.pickup_point.titleize} -> #{@booking_request.destination.titleize}</b>
+            .row 
+              .col-4 Distance: 
+              .col <b>#{@booking_request.distance} km.</b>
+            .row 
+              .col-4 Cost:
+              .col <b>Rs. #{@booking_request.cost}</b>
+      .card-body
+        %b Other Details 
+        %br
+        %hr
+          .row 
+            .col-6 Status: 
+            .col <b>#{@booking_request.status.titleize}</b>
+          .row 
+            .col-6 Request ID: 
+            .col <b>#{@booking_request.request_id}</b>
+          .row 
+            .col-6 Process Instance Key: 
+            .col-6 <b>#{@booking_request.process_instance_key}</b>
+
+
+%br
+.row
+  .col-5
+  .col-1
+    = form_tag '/workflows/broadcast' do
+      = hidden_field_tag "variables[status]", 'confirmed'
+      = hidden_field_tag :message_name, "Confirm proceed with given cost"
+      = hidden_field_tag :correlation_key, "#{@booking_request.request_id}"
+      = submit_tag 'Confirm', class: 'btn btn-success'
+  .col-1
+    = form_tag '/workflows/broadcast' do
+      = hidden_field_tag "variables[status]", 'cancelled'
+      = hidden_field_tag :message_name, "Confirm proceed with given cost"
+      = hidden_field_tag :correlation_key, "#{@booking_request.request_id}"
+      = submit_tag 'Cancel', class: 'btn btn-danger'
+
+%hr
+.card 
+  .card-header 
+    %h4 What Happens Here?
+  .card-body
+    %ul
+      %li Buisness API call to fetch data and display
+    .row 
+      .col-2 
+      .col= image_tag "business_api_call", width: '80%'    
+.card 
+  .card-header 
+    %h4 What Happens Next?
+  .card-body
+    %h5 On Confirm / Cancel
+    .row
+      %ul
+        %li On Confirm it calls workflow's <b>Publish Message API</b> with required data
+        %li
+          <b>Publish Message</b> - sends request to workflow engine
+        %li It triggers <b>Receive Task</b> defined in workflow and proceed further
+    = image_tag "complete_booking", width: '100%'

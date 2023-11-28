@@ -1,0 +1,21 @@
+.row
+  %h1 Update Booking!
+  %hr
+  = form_for @booking_request do |f|
+    .row
+      .col-xl
+        %b= label(:phone_number, 'What is to be updated?:')
+      .col-sm
+        = select_tag :type, options_for_select(['variables', 'move']), class: 'form-select'
+      .col-md
+      .col-md
+    %br
+    .row
+      .col-sm
+        %b= label(:search, :element_key, 'Element Key:')
+      .col-md
+        = text_field_tag :element_key
+      .col-md
+      .col-md
+    %br
+    .btn.btn-success= f.submit

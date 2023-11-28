@@ -1,0 +1,30 @@
+= form_for @workflow do |f|
+  - if @workflow.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@workflow.errors.count, "error")} prohibited this workflow from being saved:"
+      %ul
+        - @workflow.errors.full_messages.each do |message|
+          %li= message
+
+  .row.field
+    .col-md-2
+      %b= f.label :name
+    .col-md-3
+      = f.text_field :name
+    .col-md-2
+      %b= f.label :process_id
+    .col-md-2
+      = f.text_field :process_id
+  %br
+  .row.field
+    .col-md-2
+      %b= f.label :bpmn_diagram_file
+    .col-md-3
+      = f.file_field :bpmn_diagram_file
+    .col-md-2
+      %b= f.label :bpmn_image
+    .col-md-2
+      = f.file_field :bpmn_image
+  %br
+  .btn.btn-success.actions
+    = f.submit 'Save'

@@ -1,0 +1,25 @@
+%p#notice= notice
+
+%p
+  %b Workflow:
+  = @workflow.name
+%p
+  %b Process ID:
+  = @workflow.process_id
+%p
+  %b BPMN Diagram (.bpmn/XML):
+  = link_to "Download", @workflow.bpmn_diagram_file_url
+%p
+  .row
+    .col-3
+      %b BPMN Diagram Image:
+  .row
+    = image_tag @workflow.bpmn_image_url, width: '60%'
+
+.row
+  .col-4
+  .col-2
+    = link_to edit_workflow_path(@workflow) do
+      %i.bi.bi-pencil.btn.btn-info
+    = link_to workflows_path do
+      %i.bi.bi-x-lg.btn.btn-danger

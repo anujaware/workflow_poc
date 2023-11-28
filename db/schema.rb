@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_16_122500) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_10_083437) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_122500) do
     t.float "cost"
     t.float "distance"
     t.string "currency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "phone_number"
+    t.string "pickup_point"
+    t.string "destination"
+    t.string "process_instance_key"
+    t.string "bpmn_process_id"
+  end
+
+  create_table "workflows", force: :cascade do |t|
+    t.string "name"
+    t.string "process_id"
+    t.string "bpmn_diagram_file"
+    t.string "bpmn_image"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
