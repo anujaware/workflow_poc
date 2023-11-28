@@ -1,3 +1,6 @@
+%br
+%br
+%br
 .row
   .col-3
   .col-7
@@ -6,18 +9,17 @@
         %h4 Booking #{@booking_request.status.titleize}
       .card-body
         - if @booking_request.status == 'confirmed'
-          %b.text-success
+          %b.text-success.demo-label
             Congratulations! You booking has been confirmed.
             Enjoy your ride!
-        - else 
+        - elsif
           .text-danger Booking has been cancelled.
+        - else 
+          Reload
+-#%hr
 %br
 %br
-%br
-%hr
-%br
-%br
-.card 
+-#.card 
   .card-header 
     %h4 What Happens Here?
   .card-body

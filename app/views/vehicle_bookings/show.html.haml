@@ -13,8 +13,23 @@
         .demo-label PHONE NUMBER: #{@booking_request.phone_number}
         .demo-label PICKUP: #{@booking_request.pickup_point.titleize}
         .demo-label DESTINATION: #{@booking_request.destination.titleize}
-        .demo-label DISTANCE: #{@booking_request.distance}km.
-        .demo-label COST: #{@booking_request.cost}
+        .demo-label VEHICLE CATEGORY: #{@booking_request.vehicle_category.titleize}
+        .demo-label DISTANCE: #{@booking_request.distance} km.
+        .demo-label COST: Dhs #{@booking_request.cost}
+        .row
+          .col-4
+            = form_tag '/workflows/broadcast' do
+              = hidden_field_tag "variables[status]", 'cancelled'
+              = hidden_field_tag :message_name, "Confirm proceed with given cost"
+              = hidden_field_tag :correlation_key, "#{@booking_request.request_id}"
+              = submit_tag 'CANCEL', class: 'demo-label ant-btn css-dev-only-do-not-override-b5ovp3 ant-btn-default ant-btn-dangerous'
+          .col-1
+            = form_tag '/workflows/broadcast' do
+              = hidden_field_tag "variables[status]", 'confirmed'
+              = hidden_field_tag :message_name, "Confirm proceed with given cost"
+              = hidden_field_tag :correlation_key, "#{@booking_request.request_id}"
+              = submit_tag 'CONFIRM', class: 'demo-label ant-btn css-dev-only-do-not-override-b5ovp3 ant-btn-primary', style: 'margin-left:-20px'
+
 -#.row
   .col-3
   .col-6
@@ -53,22 +68,6 @@
             .col-6 Process Instance Key: 
             .col-6 <b>#{@booking_request.process_instance_key}</b>
 
-
-%br
--#.row
-  .col-5
-  .col-1
-    = form_tag '/workflows/broadcast' do
-      = hidden_field_tag "variables[status]", 'confirmed'
-      = hidden_field_tag :message_name, "Confirm proceed with given cost"
-      = hidden_field_tag :correlation_key, "#{@booking_request.request_id}"
-      = submit_tag 'Confirm', class: 'btn btn-success'
-  .col-1
-    = form_tag '/workflows/broadcast' do
-      = hidden_field_tag "variables[status]", 'cancelled'
-      = hidden_field_tag :message_name, "Confirm proceed with given cost"
-      = hidden_field_tag :correlation_key, "#{@booking_request.request_id}"
-      = submit_tag 'Cancel', class: 'btn btn-danger'
 
 -#%hr
 -#.card 
