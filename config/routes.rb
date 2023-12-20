@@ -6,6 +6,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :iot_services, only: [] do
+    collection do
+      get 'get_distance'
+      get 'get_cost'
+    end
+  end
+
   resources :vehicle_bookings do
     get 'complete'
     collection do
