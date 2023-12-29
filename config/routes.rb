@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/data' => "home#fetch_data"
   get 'home/index'
   resources :workflows do
     collection do
