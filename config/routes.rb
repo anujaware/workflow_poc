@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'home/data' => "home#fetch_data"
+  post 'create_records' => "application#create_records"
+  put 'update_records' => "application#update_records"
   get 'home/index'
   resources :workflows do
     collection do
